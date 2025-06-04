@@ -110,7 +110,8 @@ def mostrar_reportes():
         with st.expander("🔍 Filtros", expanded=False):
             #col1, col2 = st.columns(2)
             asesores_disponibles = df_datos["ASESOR"].dropna().unique().tolist()
-            filtro_asesor = col1.selectbox("Filtrar por asesor", options=["Todos"] + sorted(asesores_disponibles))
+            #filtro_asesor = col1.selectbox("Filtrar por asesor", options=["Todos"] + sorted(asesores_disponibles))
+            filtro_asesor = selectbox("Filtrar por asesor", options=["Todos"] + sorted(asesores_disponibles))
             if filtro_asesor != "Todos":
                 df_filtrado = df_datos[df_datos["ASESOR"] == filtro_asesor]
             #else:
