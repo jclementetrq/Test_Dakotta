@@ -108,20 +108,20 @@ def mostrar_reportes():
 
         # Filtros
         with st.expander("🔍 Filtros", expanded=False):
-            col1, col2 = st.columns(2)
+            #col1, col2 = st.columns(2)
             asesores_disponibles = df_datos["ASESOR"].dropna().unique().tolist()
             filtro_asesor = col1.selectbox("Filtrar por asesor", options=["Todos"] + sorted(asesores_disponibles))
             if filtro_asesor != "Todos":
                 df_filtrado = df_datos[df_datos["ASESOR"] == filtro_asesor]
-            else:
-                df_filtrado = df_datos.copy()
+            #else:
+            #    df_filtrado = df_datos.copy()
 
-            clientes_disponibles = df_filtrado["CLIENTE"].dropna().unique().tolist()
-            filtro_cliente = col2.selectbox("Filtrar por cliente", options=["Todos"] + sorted(clientes_disponibles))
-            if filtro_cliente != "Todos":
-                df_filtrado = df_filtrado[df_filtrado["CLIENTE"] == filtro_cliente]
+            #clientes_disponibles = df_filtrado["CLIENTE"].dropna().unique().tolist()
+            #filtro_cliente = col2.selectbox("Filtrar por cliente", options=["Todos"] + sorted(clientes_disponibles))
+            #if filtro_cliente != "Todos":
+            #    df_filtrado = df_filtrado[df_filtrado["CLIENTE"] == filtro_cliente]
 
-            df_datos = df_filtrado
+            #df_datos = df_filtrado
 
         # Botón de descarga del archivo original del asesor filtrado
         if filtro_asesor != "Todos":
@@ -152,6 +152,19 @@ def mostrar_reportes():
         elif hoja_seleccionada.upper() == "VENTA MENSUAL":
             for col in cols_indicadores:
                 indicadores[col] = df_datos[col].sum()
+        elif hoja_seleccionada.upper() == "CUMPLIMIENTO MENSUAL": 
+            try:
+                total_presupuesto = df_datos["PRESUPUESTO"].sum()
+                total_venta = df_datos["VENTA"].sum()
+                total_por_cumplir = df_datos["POR CUMPLIR"].sum()
+                cumplimiento_pct = (total_venta / total_presupuesto) * 100 if total_presupuesto else 0
+
+                indicadores["TOTAL PRESUPUESTO"] = round(total_presupuesto, 2)
+                indicadores["TOTAL VENTA"] = round(total_venta, 2)
+                indicadores["TOTAL POR CUMPLIR"] = round(total_por_cumplir, 2)
+                indicadores["CUMPLIMIENTO (%)"] = f"{cumplimiento_pct:.2f}%"
+            except KeyError as e:
+                st.warning(f"⚠ Faltan columnas esperadas en la hoja 'OBJETIVOS': {e}")
 
         df_indicadores_mostrado = pd.DataFrame([indicadores], columns=cols_indicadores)
         st.subheader("📈 Indicadores")
