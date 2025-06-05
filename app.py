@@ -158,7 +158,7 @@ def mostrar_reportes():
         elif hoja_seleccionada.upper() == "CUMPLIMIENTO MENSUAL": 
             try:
                 # Asegurar tipos numéricos
-                st.write("🔍 PRESUPUESTO:", df_datos["PRESUPUESTO"].head())
+                st.write("🔍 PRESUPUESTO:", df_datos["PRESUPUESTO"].sum())
                 st.write("🔍 VENTA:", df_datos["VENTA"].head())
                 st.write("🔍 POR CUMPLIR:", df_datos["POR CUMPLIR"].head())
                 
