@@ -12,7 +12,7 @@ st.set_page_config(page_title="Portal de Reportes", layout="wide")
 # PARÁMETROS DE TU REPO DE GITHUB
 # ------------------------------------------
 USUARIO_GITHUB = "jclementetrq"
-REPO_GITHUB = "Dakotta_Ventas"
+REPO_GITHUB = "Test_Dakotta"
 RAMA = "main"
 CARPETA = "data"
 
