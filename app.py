@@ -142,6 +142,8 @@ def mostrar_reportes():
         st.subheader("📊 Datos principales")
         st.dataframe(df_datos, use_container_width=True)
 
+        st.write("🧾 Columnas disponibles en la hoja:", df_datos.columns.tolist())
+        
         # Indicadores
         indicadores = {}
         cols_indicadores = df_datos.columns[2:]
