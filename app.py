@@ -157,15 +157,6 @@ def mostrar_reportes():
                 indicadores[col] = df_datos[col].sum()
         elif hoja_seleccionada.upper() == "CUMPLIMIENTO MENSUAL": 
             try:
-                # Asegurar tipos numéricos
-                st.write("🔍 PRESUPUESTO:", df_datos["PRESUPUESTO"].sum())
-                st.write("🔍 VENTA:", df_datos["VENTA"].head())
-                st.write("🔍 POR CUMPLIR:", df_datos["POR CUMPLIR"].head())
-                
-                df_datos["PRESUPUESTO"] = pd.to_numeric(df_datos["PRESUPUESTO"], errors="coerce")
-                df_datos["VENTA"] = pd.to_numeric(df_datos["VENTA"], errors="coerce")
-                df_datos["POR CUMPLIR"] = pd.to_numeric(df_datos["POR CUMPLIR"], errors="coerce")
-                
                 total_presupuesto = df_datos["PRESUPUESTO"].sum()
                 total_venta = df_datos["VENTA"].sum()
                 total_por_cumplir = df_datos["POR CUMPLIR"].sum()
@@ -178,7 +169,7 @@ def mostrar_reportes():
             except KeyError as e:
                 st.warning(f"⚠ Faltan columnas esperadas en la hoja 'OBJETIVOS': {e}")
 
-        df_indicadores_mostrado = pd.DataFrame([indicadores], columns=cols_indicadores)
+        df_indicadores_mostrado = pd.DataFrame([indicadores])
         st.subheader("📈 Indicadores")
         st.dataframe(df_indicadores_mostrado, use_container_width=True)
 
