@@ -143,11 +143,6 @@ def mostrar_reportes():
         st.dataframe(df_datos, use_container_width=True)
 
         st.write("🧾 Columnas disponibles en la hoja:", df_datos.columns.tolist())
-
-        st.write("🔍 PRESUPUESTO:", df_datos["PRESUPUESTO"].head())
-        st.write("🔍 VENTA:", df_datos["VENTA"].head())
-        st.write("🔍 POR CUMPLIR:", df_datos["POR CUMPLIR"].head())
-
         
         # Indicadores
         indicadores = {}
@@ -163,6 +158,10 @@ def mostrar_reportes():
         elif hoja_seleccionada.upper() == "CUMPLIMIENTO MENSUAL": 
             try:
                 # Asegurar tipos numéricos
+                st.write("🔍 PRESUPUESTO:", df_datos["PRESUPUESTO"].head())
+                st.write("🔍 VENTA:", df_datos["VENTA"].head())
+                st.write("🔍 POR CUMPLIR:", df_datos["POR CUMPLIR"].head())
+                
                 df_datos["PRESUPUESTO"] = pd.to_numeric(df_datos["PRESUPUESTO"], errors="coerce")
                 df_datos["VENTA"] = pd.to_numeric(df_datos["VENTA"], errors="coerce")
                 df_datos["POR CUMPLIR"] = pd.to_numeric(df_datos["POR CUMPLIR"], errors="coerce")
