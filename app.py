@@ -165,7 +165,7 @@ def mostrar_reportes():
                 indicadores["TOTAL POR CUMPLIR"] = round(total_por_cumplir, 2)
                 indicadores["CUMPLIMIENTO (%)"] = f"{cumplimiento_pct:.2f}%"
             except KeyError as e:
-                st.warning(f"⚠ Faltan columnas esperadas en la hoja 'OBJETIVOS': {e}")
+                st.warning(f"⚠ Faltan columnas esperadas en la hoja 'CUMPLIMIENTO MENSUAL': {e}")
 
         df_indicadores_mostrado = pd.DataFrame([indicadores])
         st.subheader("📈 Indicadores")
