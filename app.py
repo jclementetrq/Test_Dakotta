@@ -114,6 +114,7 @@ def mostrar_reportes():
             filtro_asesor = st.selectbox("Filtrar por asesor", options=["Todos"] + sorted(asesores_disponibles))
             if filtro_asesor != "Todos":
                 df_filtrado = df_datos[df_datos["ASESOR"] == filtro_asesor]
+                df_datos = df_filtrado
             #else:
             #    df_filtrado = df_datos.copy()
 
